@@ -22,9 +22,12 @@ class AdditionView(View):
 
         if form_instance.is_valid():
 
-            print(form_instance.cleaned_data)
+            validated_data = form_instance.cleaned_data
+            n1 = validated_data.get('num1')
+            n2 = validated_data.get('num2') 
+            result = int(n1) + int(n2)
 
-            return render(request,'addition.html',{'form':form_instance})
+            return render(request,'addition.html',{'form':form_instance,'output':result})
         else:
 
             return render(request,'addition.html',{'form':form_instance})
